@@ -1,0 +1,86 @@
+type AddAssetArgs = record {
+  asset_address : text;
+  stale_price_threshold : nat64;
+  token_decimals : nat8;
+  symbol : text;
+  price_feed : text;
+};
+type AssetInfo = record { address : text; symbol : text };
+type AssetInfoSymbol = record {
+  asset_address : text;
+  original_symbol : text;
+  stale_price_threshold : nat64;
+  token_decimals : nat8;
+  price_feed : text;
+};
+type AssetWithPrice = record {
+  decimals : nat8;
+  last_updated : text;
+  address : text;
+  raw_price : text;
+  price : text;
+  symbol : text;
+};
+type ConversionResult = record {
+  raw : RawConversionData;
+  output : text;
+  price_decimals : nat8;
+  last_updated_time : nat64;
+  input : text;
+  token_decimals : nat8;
+  price : text;
+  symbol : text;
+};
+type PriceFeedDetails = record {
+  updated_at : nat64;
+  answer : int;
+  round_id : text;
+  answered_in_round : text;
+  started_at : nat64;
+};
+type PriceInfo = record {
+  decimals : nat8;
+  raw_price : text;
+  formatted_price : text;
+};
+type RawConversionData = record { price : text; amount : text };
+type RemoveAssetArgs = record { asset_address : text };
+type Result = variant { Ok : text; Err : text };
+type Result_1 = variant { Ok : vec ConversionResult; Err : text };
+type Result_2 = variant { Ok : vec AssetInfo; Err : text };
+type Result_3 = variant { Ok : vec AssetWithPrice; Err : text };
+type Result_4 = variant { Ok : AssetInfoSymbol; Err : text };
+type Result_5 = variant { Ok : PriceFeedDetails; Err : text };
+type Result_6 = variant { Ok : TokenAmountResult; Err : text };
+type Result_7 = variant { Ok : TokenPriceResult; Err : text };
+type Result_8 = variant { Ok : UsdValueResult; Err : text };
+type Result_9 = variant { Ok : PriceInfo; Err : text };
+type TokenAmountResult = record { raw_amount : text; amount : text };
+type TokenPriceResult = record {
+  decimals : nat8;
+  raw_price : int;
+  price : text;
+};
+type UsdValueResult = record {
+  token_amount : text;
+  asset_address : text;
+  usd_value : text;
+  raw_result : text;
+};
+service : {
+  add_asset : (AddAssetArgs) -> (Result);
+  convert_tokens_to_usd : (text, vec text) -> (Result_1);
+  convert_usd_to_tokens : (text, vec text) -> (Result_1);
+  get_address : (opt principal) -> (Result);
+  get_all_assets : (text) -> (Result_2);
+  get_all_assets_with_prices : (text) -> (Result_3);
+  get_asset_by_symbol : (text, text) -> (Result_4);
+  get_balance : (opt principal) -> (Result);
+  get_price_feed_details : (text, text) -> (Result_5);
+  get_token_amount : (text, text, text, nat8) -> (Result_6);
+  get_token_price : (text, text) -> (Result_7);
+  get_token_price_by_symbol : (text, text) -> (Result_7);
+  get_usd_value : (text, text, text, nat8) -> (Result_8);
+  remove_asset : (RemoveAssetArgs) -> (Result);
+  safe_get_price : (text, text) -> (Result_9);
+}
