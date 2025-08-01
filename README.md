@@ -9,7 +9,7 @@ This integration securely reads Chainlink Price Feed data from Ethereum Sepolia 
 
 [Live Backend](https://a4gq6-oaaaa-aaaab-qaa4q-cai.icp0.io/?id=jmbn7-tiaaa-aaaaa-qbsfa-cai)
 
-<a href="https://icp.ninja/i?s=wRA1L" target="_blank">
+<a href="https://icp.ninja/i?s=w2RVV" target="_blank">
   <img src="https://github.com/user-attachments/assets/3fa2fbdf-493a-496f-a8e3-888a51c9efda" 
        alt="Open in ICP Ninja" width="206" height="32" />
 </a>
